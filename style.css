@@ -1,0 +1,116 @@
+/* 🌑 Black Background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Set background to black */
+    color: white; /* Ensure text is visible on black */
+    flex-direction: column;
+    text-align: center;
+}
+
+/* ✨ Glowing Logo */
+#project-logo {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                 0 0 25px rgba(255, 255, 255, 0.8),
+                 0 0 35px rgba(255, 255, 255, 0.6);
+    animation: glow 1.5s infinite alternate;
+    margin-bottom: 20px; /* Add spacing below logo */
+}
+
+/* 🔥 Glow Animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                     0 0 25px rgba(255, 255, 255, 0.8),
+                     0 0 35px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                     0 0 30px rgba(255, 255, 255, 0.9),
+                     0 0 40px rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* ✨ Centering the Tic-Tac-Toe Board */
+#game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    width: auto;
+}
+
+/* ✨ Glowing Tic-Tac-Toe Board */
+#game-board {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(3, 100px);
+    gap: 5px;
+    background-color: transparent;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    animation: board-glow 1.5s infinite alternate;
+    margin-top: 20px;
+}
+
+/* 🔥 Board Glow Animation */
+@keyframes board-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+}
+
+/* ✨ Centering Game Cells */
+.cell {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    font-weight: bold;
+}
+
+/* 🟥 Red X */
+.cell.X {
+    color: #ff0000; /* Bright Red */
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.9),
+                 0 0 20px rgba(255, 0, 0, 0.7),
+                 0 0 30px rgba(255, 0, 0, 0.5);
+}
+
+/* 🔵 Blue O */
+.cell.O {
+    color: #007bff; /* Bright Blue */
+    text-shadow: 0 0 10px rgba(0, 123, 255, 0.9),
+                 0 0 20px rgba(0, 123, 255, 0.7),
+                 0 0 30px rgba(0, 123, 255, 0.5);
+}
+
+/* 🖱 Cell Hover Effect */
+.cell:hover {
+    background-color: #222;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+}
+
+/* 🎮 Center Buttons (if any exist) */
+button {
+    margin-top: 20px;
+}

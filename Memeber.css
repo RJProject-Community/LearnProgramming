@@ -1,0 +1,21 @@
+/* 🔥 Steps Section */
+ol {
+    text-align: left;
+    margin: 20px auto;
+    padding: 15px;
+    width: 70%;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+ol li {
+    font-size: 18px;
+    padding: 8px;
+    list-style-type: decimal;
+}
+
+ol li strong {
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
+}

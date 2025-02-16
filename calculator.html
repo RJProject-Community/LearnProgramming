@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Calculator</title>
+    <link rel="stylesheet" href="Cal.css">
+</head>
+<body>
+    <div id="calculator-container">
+        <h1 id="project-logo">Raven John's Project</h1>
+        <button id="home-button">Home</button>
+
+        <!-- Calculator Form -->
+        <form id="calc-form">
+            <h1>Calculator</h1>
+            <input type="text" id="display" name="calculation" disabled>
+            <div id="buttons">
+                <!-- Row 1 -->
+                <button type="button" class="btn" onclick="handleInput('7')">7</button>
+                <button type="button" class="btn" onclick="handleInput('8')">8</button>
+                <button type="button" class="btn" onclick="handleInput('9')">9</button>
+                <button type="button" class="btn" onclick="handleInput('/')">/</button>
+                <!-- Row 2 -->
+                <button type="button" class="btn" onclick="handleInput('4')">4</button>
+                <button type="button" class="btn" onclick="handleInput('5')">5</button>
+                <button type="button" class="btn" onclick="handleInput('6')">6</button>
+                <button type="button" class="btn" onclick="handleInput('*')">*</button>
+                <!-- Row 3 -->
+                <button type="button" class="btn" onclick="handleInput('1')">1</button>
+                <button type="button" class="btn" onclick="handleInput('2')">2</button>
+                <button type="button" class="btn" onclick="handleInput('3')">3</button>
+                <button type="button" class="btn" onclick="handleInput('-')">-</button>
+                <!-- Row 4 -->
+                <button type="button" class="btn" onclick="handleInput('0')">0</button>
+                <button type="button" class="btn" onclick="handleInput('.')">.</button>
+                <button type="submit" class="btn">=</button>
+                <button type="button" class="btn" onclick="handleInput('+')">+</button>
+                <!-- Row 5 -->
+                <button type="button" class="btn" onclick="clearDisplay()">C</button>
+                <button type="button" class="btn" onclick="deleteLast()">⌫</button>
+            </div>
+        </form>
+
+        <!-- Display Form Result -->
+        <div id="form-result"></div>
+    </div>
+
+    <script>
+        document.getElementById('home-button').addEventListener('click', function () {
+            window.location.href = 'home.html';
+        });
+
+        function handleInput(value) {
+            let display = document.getElementById('display');
+            display.value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = "";
+        }
+
+        function deleteLast() {
+            let display = document.getElementById('display');
+            display.value = display.value.slice(0, -1);
+        }
+
+        // Form Submission for Calculation
+        document.getElementById("calc-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let display = document.getElementById("display");
+            let resultDisplay = document.getElementById("form-result");
+
+            try {
+                let result = eval(display.value);
+                display.value = result;
+                resultDisplay.innerHTML = `<p>Result: ${result}</p>`;
+            } catch (e) {
+                display.value = "Error";
+                resultDisplay.innerHTML = `<p>Invalid calculation!</p>`;
+            }
+        });
+    </script>
+</body>
+</html>

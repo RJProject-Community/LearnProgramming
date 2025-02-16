@@ -1,0 +1,152 @@
+/* ✨ Stylish Background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    background-size: cover;
+}
+
+/* 🔲 Calculator Container */
+#calculator-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+/* ✨ Glowing Logo */
+#project-logo {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.6),
+                 0 0 30px rgba(255, 255, 255, 0.4);
+    animation: glow 1.5s infinite alternate;
+}
+
+/* 🔥 Glow Animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                     0 0 20px rgba(255, 255, 255, 0.6),
+                     0 0 30px rgba(255, 255, 255, 0.4);
+    }
+    100% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                     0 0 25px rgba(255, 255, 255, 0.8),
+                     0 0 35px rgba(255, 255, 255, 0.6);
+    }
+}
+
+/* 🔵 Blue Home Button */
+#home-button {
+    background-color: #007bff; /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-bottom: 15px;
+}
+
+/* 🖱 Hover Effect */
+#home-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: scale(1.05);
+}
+
+/* 🖥 Calculator Form */
+#calc-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 🔳 Display Input */
+#display {
+    width: 100%;
+    height: 60px;
+    font-size: 2em;
+    text-align: right;
+    margin-bottom: 15px;
+    padding: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    border-radius: 10px;
+}
+
+/* 🔢 Buttons Grid */
+#buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 10px;
+}
+
+/* 🎨 Button Styles */
+.btn {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* 🔥 Special Buttons (C & Delete) */
+.btn.special {
+    background-color: #ff6b6b;
+}
+
+.btn.special:hover {
+    background-color: #ff5252;
+}
+
+/* ➕➖ Multiplication & Division */
+.btn.operator {
+    background-color: #ffa502;
+}
+
+.btn.operator:hover {
+    background-color: #ff9f1a;
+}
+
+/* 🔷 Equals Button */
+.btn.equal {
+    background-color: #1e90ff;
+    grid-column: span 2;
+}
+
+.btn.equal:hover {
+    background-color: #1c86ee;
+}
+
+/* 0 Button Wider */
+.btn.wide {
+    grid-column: span 2;
+}
+
+/* ✨ Form Result */
+#form-result {
+    margin-top: 15px;
+    font-size: 1.2em;
+    color: white;
+}

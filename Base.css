@@ -1,0 +1,151 @@
+/* 🌑 Black Background */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Set background to black */
+    color: white; /* Ensure text is visible on black */
+    flex-direction: column;
+    text-align: center;
+}
+
+/* ✨ Glowing Logo */
+#project-logo {
+    font-size: 3em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                 0 0 25px rgba(255, 255, 255, 0.8),
+                 0 0 35px rgba(255, 255, 255, 0.6);
+    animation: glow 1.5s infinite alternate;
+    margin-bottom: 20px;
+}
+
+/* 🔥 Glow Animation */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                     0 0 25px rgba(255, 255, 255, 0.8),
+                     0 0 35px rgba(255, 255, 255, 0.6);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 1),
+                     0 0 30px rgba(255, 255, 255, 0.9),
+                     0 0 40px rgba(255, 255, 255, 0.7);
+    }
+}
+
+/* ✨ Center Everything */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+/* ✨ Glowing Headings */
+h1, h2, h3, h4, h5, h6 {
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                 0 0 25px rgba(255, 255, 255, 0.8),
+                 0 0 35px rgba(255, 255, 255, 0.6);
+}
+
+/* ✨ Glowing Paragraph Text */
+p {
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+/* 🔗 Glowing Links */
+a {
+    color: cyan;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.8),
+                 0 0 20px rgba(0, 255, 255, 0.6);
+    transition: text-shadow 0.3s;
+}
+
+/* 🔗 Hover Effect on Links */
+a:hover {
+    text-shadow: 0 0 20px rgba(0, 255, 255, 1),
+                 0 0 30px rgba(0, 255, 255, 0.9);
+}
+
+/* 🔘 Glowing Buttons */
+button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                 0 0 20px rgba(255, 255, 255, 0.6);
+    margin-top: 15px;
+}
+
+/* 🔘 Hover Effect on Buttons */
+button:hover {
+    background-color: white;
+    color: black;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 1),
+                 0 0 25px rgba(255, 255, 255, 0.8);
+}
+
+/* 🏠 Centered Home Button */
+#home-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    margin-top: 15px;
+}
+
+/* 🖱 Hover Effect for Home Button */
+#home-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* 🌟 Big Logo Platform */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px; /* Adjust height if needed */
+    background: transparent;
+    margin-bottom: 20px;
+}
+
+/* ✨ Glowing Logo */
+.logo-container img {
+    max-width: 250px; /* Adjust size if needed */
+    height: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+    animation: glowLogo 1.5s infinite alternate;
+}
+
+/* 🌟 Glow Animation */
+@keyframes glowLogo {
+    0% {
+        filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1));
+    }
+    100% {
+        filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.9));
+    }
+}
+
+

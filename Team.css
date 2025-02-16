@@ -1,0 +1,119 @@
+/* 🌟 Dark Background & Centering */
+body {
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* 🌟 Glowing Header */
+h1 {
+    text-shadow: 0 0 10px cyan, 0 0 20px cyan;
+}
+
+p {
+    font-size: 18px;
+}
+
+/* 🌟 Learn & Program Section */
+#learn-program {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+button {
+    background: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: darkblue;
+    box-shadow: 0 0 10px cyan;
+}
+
+/* 🌟 Team Section */
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.team-member {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transition: 0.3s;
+}
+
+.team-member:hover {
+    box-shadow: 0 0 15px cyan;
+}
+
+.team-member h3 {
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
+}
+
+.team-member p {
+    color: white;
+}
+
+/* 🏠 Home Button */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+}
+
+.home-button:hover {
+    background: linear-gradient(45deg, #00d4ff, #007bff);
+    box-shadow: 0 0 15px rgba(0, 212, 255, 1);
+    transform: scale(1.05);
+}
+
+/* 🔗 Member Button */
+.member-button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #ff4e50, #fc913a);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(255, 78, 80, 0.7);
+}
+
+.member-button:hover {
+    background: linear-gradient(45deg, #fc913a, #ff4e50);
+    box-shadow: 0 0 15px rgba(255, 78, 80, 1);
+    transform: scale(1.05);
+}
+
