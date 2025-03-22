@@ -117,3 +117,86 @@ button:hover {
     transform: scale(1.05);
 }
 
+/* 🌟 Responsive Design for TDLD & Game */
+@media (max-width: 768px) {
+    /* 🔹 Adjust Header Size */
+    h1 {
+        font-size: 22px;
+    }
+
+    /* 📌 Adjust Learn & Program Section */
+    #learn-program {
+        width: 90%;
+        padding: 15px;
+    }
+
+    /* 🏆 Adjust Team Members */
+    .team-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-member {
+        width: 80%;
+        margin-bottom: 15px;
+    }
+
+    /* 🎮 Game Board */
+    #gameBoard {
+        gap: 3px;
+        width: min(95vw, 400px);
+        height: min(95vw, 400px);
+    }
+
+    /* 🔲 Tic-Tac-Toe Cells */
+    .cell {
+        font-size: 1.5rem;
+        width: 100%;
+        height: auto;
+    }
+
+    /* 🏆 Status Message */
+    #status {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    /* 📌 Dropdown & Buttons */
+    select, button {
+        font-size: 16px;
+        padding: 10px;
+        width: 80%;
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    /* 🔹 Ensure Layout is Centered */
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+}
+
+/* 🔹 Extra Small Screens (Phones) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    #gameBoard {
+        width: min(95vw, 350px);
+        height: min(95vw, 350px);
+    }
+
+    .cell {
+        font-size: 1.2rem;
+    }
+
+    select, button {
+        font-size: 14px;
+        padding: 8px;
+    }
+    }
