@@ -19,3 +19,70 @@ ol li strong {
     color: cyan;
     text-shadow: 0 0 10px cyan;
 }
+
+/* 🌟 Responsive Design for Mobile */
+@media (max-width: 768px) {
+    /* Adjusts header size for smaller screens */
+    h1 {
+        font-size: 22px;
+    }
+
+    /* 📱 Game Board - Ensures it scales properly */
+    #gameBoard {
+        gap: 3px;
+        width: min(95vw, 400px);
+        height: min(95vw, 400px);
+    }
+
+    /* 🔲 Cells - Make sure they're still touch-friendly */
+    .cell {
+        font-size: 1.5rem; /* Adjust text size for better visibility */
+        width: 100%; /* Ensures the board fills space evenly */
+        height: auto; /* Aspect ratio is maintained */
+    }
+
+    /* 🏆 Status Message */
+    #status {
+        font-size: 18px;
+        margin-top: 10px;
+    }
+
+    /* 📌 Dropdown & Buttons - Adjust for mobile */
+    select, button {
+        font-size: 16px;
+        padding: 10px;
+        width: 80%;
+        max-width: 300px;
+        margin-top: 10px;
+    }
+
+    /* 🏗️ Ensure the game is centered */
+    body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 20px;
+    }
+}
+
+/* 🔹 Extra Small Screens (Phones) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    #gameBoard {
+        width: min(95vw, 350px);
+        height: min(95vw, 350px);
+    }
+
+    .cell {
+        font-size: 1.2rem;
+    }
+
+    select, button {
+        font-size: 14px;
+        padding: 8px;
+    }
+        }
