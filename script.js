@@ -35,7 +35,7 @@ cells.forEach(cell => {
 });
 
 homeButton.addEventListener('click', () => {
-    window.location.href = 'index.html';
+    window.location.href = 'home.html';
 });
 
 toggleModeButton.addEventListener('click', () => {
