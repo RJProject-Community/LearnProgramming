@@ -5,14 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="Base.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .tdld-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 12px;
+            text-align: center;
+            background-color: orange;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            white-space: nowrap; /* Prevent text from breaking */
+        }
+        .tdld-button:hover {
+            background-color: darkorange;
+        }
+    </style>
 </head>
 <body>
     <div id="home-container">
         <h1 id="project-logo">Raven John's Project</h1>
+        <p id="userEmail"></p> <!-- Show logged-in user -->
         <a href="https://rjproject.net" target="_blank" id="project-link">Visit Raven John's Project</a>
         <button id="start-game-button">Start Game</button>
         <button id="open-calculator-button">Open Calculator</button>
+        <a href="TDLD.html" class="tdld-button">Go to Learn and Program</a> <!-- Fully visible & centered -->
+        <button id="adminBtn" onclick="goToAccount()" style="display: none;">Administrator</button> <!-- Admin Button -->
+        <button id="logout-button" onclick="logout()">Logout</button> <!-- Logout button -->
     </div>
+    
     <script>
         document.getElementById('start-game-button').addEventListener('click', function() {
             window.location.href = 'Tictactoe.html';
@@ -20,18 +46,35 @@
         document.getElementById('open-calculator-button').addEventListener('click', function() {
             window.location.href = 'calculator.html';
         });
+
+        // Get logged-in email
+        const savedUser = JSON.parse(localStorage.getItem("user"));
+        if (savedUser) {
+            document.getElementById("userEmail").innerText = "Logged in as: " + savedUser.email;
+
+            // Show "Administrator" button only if the user is the admin
+            if (savedUser.email === "ravenjm.nhs@gmail.com") {
+                document.getElementById("adminBtn").style.display = "block";
+            }
+        } else {
+            alert("You are not logged in.");
+            window.location.href = "index.html"; // Redirect if not logged in
+        }
+
+        function logout() {
+            localStorage.removeItem("loggedInEmail");
+            localStorage.removeItem("user");
+            window.location.href = "index.html";
+        }
+
+        // Restrict access to account.html (Admin Only)
+        function goToAccount() {
+            if (savedUser.email === "ravenjm.nhs@gmail.com") {
+                window.location.href = "account.html";
+            } else {
+                alert("You are not the administrator.");
+            }
+        }
     </script>
-<a href="TDLD.html" class="tdld-button">Go to Learn and Program</a>
-</div>
-
-        </div>
-    </section>
-
-    <!-- 🌟 Footer -->
-    <footer>
-        <p>© 2025 Raven John's Project - Learn and Program. All rights reserved.</p>
-    </footer>
-
 </body>
 </html>
-
