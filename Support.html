@@ -163,9 +163,17 @@
         }
 
         function goToFacebook() {
-            // Redirect to Facebook profile (Make sure this is the correct username or profile ID)
-            let facebookProfile = "https://www.facebook.com/raven.john.becaro.mabao"; // If this doesn't work, use profile ID
-            window.location.href = facebookProfile;
+            let fbProfileID = "100091234567890"; // Replace with actual profile ID if needed
+            let fbUsername = "raven.john.becaro.mabao"; // Facebook username
+
+            let facebookAppLink = `fb://profile/${fbProfileID}`; // Opens in Facebook app
+            let facebookWebLink = `https://www.facebook.com/${fbUsername}`; // Opens in browser
+
+            // Try opening the Facebook app first, fallback to browser if it fails
+            window.location.href = facebookAppLink;
+            setTimeout(() => {
+                window.location.href = facebookWebLink;
+            }, 500);
         }
     </script>
 
