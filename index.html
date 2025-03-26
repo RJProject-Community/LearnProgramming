@@ -35,38 +35,6 @@
         <a href="Tictactoe.html"><button id="start-game-button">Start Game</button></a>
         <a href="Calculator.html"><button id="open-calculator-button">Open Calculator</button></a>
         <a href="TDLD.html" class="tdld-button">Go to Learn and Program</a> <!-- Fully visible & centered -->
-        <button id="logout-button" onclick="logout()">Logout</button> <!-- Logout button -->
-        <button id="adminBtn" onclick="goToAccount()" style="display: none;">Administrator</button> <!-- Admin Button -->
     </div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const savedUser = JSON.parse(localStorage.getItem("loggedInUser")); // FIXED: Correct key
-
-    if (savedUser && savedUser.email) {
-        document.getElementById("userEmail").innerText = "Logged in as: " + savedUser.email;
-
-        // FIX: Ensure "Administrator" button shows for the admin user
-        if (savedUser.email.toLowerCase() === "ravenjm.nhs@gmail.com") { 
-            document.getElementById("adminBtn").style.display = "block"; // Show admin button
-        }
-    } else {
-        alert("You are not logged in.");
-        window.location.href = "index.html"; // Redirect to login
-    }
-
-    // Ensure the admin button redirects correctly
-    document.getElementById("adminBtn").addEventListener("click", function () {
-        window.location.href = "account.html"; // Redirect to account page
-    });
-
-    function logout() {
-        localStorage.removeItem("loggedInUser"); // FIXED: Remove correct key
-        window.location.href = "index.html";
-    }
-
-    document.getElementById("logout-button").addEventListener("click", logout);
-});
-    </script>
 </body>
 </html>
