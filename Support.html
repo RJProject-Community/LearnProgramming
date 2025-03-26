@@ -111,7 +111,7 @@
     <div class="container" id="finalContainer" style="display: none;">
         <h2>Final Step</h2>
         <p>Choose your preferred contact method:</p>
-        <button onclick="sendFacebookMessage()">Facebook Messenger</button>
+        <button onclick="sendFacebookMessage()">Facebook Profile</button>
         <button onclick="sendSMS()">Send SMS</button>
     </div>
 
@@ -163,19 +163,8 @@
         }
 
         function sendFacebookMessage() {
-            let fbMessage = `Support Request\nEmail: ${formData.email}\nFull Name: ${formData.fullname}\nAddress: ${formData.address}\nReason: ${formData.reason}\nAdvice: ${formData.advice}`;
-
-            let fbUsername = "raven.john.becaro.mabao"; // Messenger username
-
-            // Open Messenger app (mobile) or Messenger web (desktop)
-            let messengerLink = `fb-messenger://user-thread/${fbUsername}`;
-            let webMessengerLink = `https://m.me/${fbUsername}?text=${encodeURIComponent(fbMessage)}`;
-
-            // Try to open Messenger app first, fallback to web if not installed
-            window.location.href = messengerLink;
-            setTimeout(() => {
-                window.location.href = webMessengerLink;
-            }, 1000);
+            // Redirect to Facebook profile
+            window.location.href = "https://www.facebook.com/raven.john.becaro.mabao";
         }
     </script>
 
