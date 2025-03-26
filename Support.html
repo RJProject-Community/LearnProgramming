@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Form</title>
+    <style>
+        @keyframes neonGlow {
+            0% { text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px cyan; }
+            50% { text-shadow: 0 0 10px white, 0 0 20px cyan, 0 0 25px cyan; }
+            100% { text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px cyan; }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: black;
+            color: white;
+        }
+
+        h2 {
+            animation: neonGlow 1.5s infinite alternate;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 400px;
+            margin: 50px auto;
+            background: rgba(20, 20, 20, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid white;
+            box-shadow: 0 0 10px white;
+        }
+
+        label {
+            font-size: 1.1em;
+            text-shadow: 0 0 5px white, 0 0 10px cyan;
+        }
+
+        input, textarea, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            display: block;
+            background: black;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px white;
+            outline: none;
+        }
+
+        button {
+            padding: 12px;
+            margin-top: 10px;
+            background-color: black;
+            color: white;
+            font-size: 1.1em;
+            border: 2px solid cyan;
+            border-radius: 5px;
+            box-shadow: 0 0 15px cyan;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: cyan;
+            color: black;
+            box-shadow: 0 0 20px cyan;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: User Information -->
+    <div class="container" id="formContainer">
+        <h2>Support Form</h2>
+        <form id="supportForm">
+            <label>Email:</label>
+            <input type="email" id="email" required>
+
+            <label>Full Name:</label>
+            <input type="text" id="fullname" required>
+
+            <label>Address:</label>
+            <input type="text" id="address" required>
+
+            <button type="submit">Next</button>
+        </form>
+    </div>
+
+    <!-- Step 2: Crature AI - Ask Reason -->
+    <div class="container" id="aiContainer" style="display: none;">
+        <h2>Crature AI</h2>
+        <p>What is your reason to be in here?</p>
+        <button onclick="selectReason('Bugs Problem')">Bugs Problem</button>
+        <button onclick="selectReason('Unpressable Buttons')">Unpressable Buttons</button>
+        <button onclick="selectReason('Give Advices')">Give Advices</button>
+    </div>
+
+    <!-- Step 3: Crature AI - Ask Advice -->
+    <div class="container" id="adviceContainer" style="display: none;">
+        <h2>Crature AI</h2>
+        <p>What is your best advice to be recommended?</p>
+        <textarea id="adviceInput" required></textarea>
+        <button onclick="submitAdvice()">Submit Advice</button>
+    </div>
+
+    <!-- Step 4: Final Choice -->
+    <div class="container" id="finalContainer" style="display: none;">
+        <h2>Final Step</h2>
+        <p>Choose your preferred contact method:</p>
+        <button onclick="sendFacebookMessage()">Facebook Messenger</button>
+        <button onclick="sendSMS()">Send SMS</button>
+    </div>
+
+    <script>
+        let formData = {}; // Store user input
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const formContainer = document.getElementById("formContainer");
+            const aiContainer = document.getElementById("aiContainer");
+            const adviceContainer = document.getElementById("adviceContainer");
+            const finalContainer = document.getElementById("finalContainer");
+
+            const supportForm = document.getElementById("supportForm");
+            if (supportForm) {
+                supportForm.addEventListener("submit", function(event) {
+                    event.preventDefault();
+
+                    // Store form data
+                    formData.email = document.getElementById("email").value;
+                    formData.fullname = document.getElementById("fullname").value;
+                    formData.address = document.getElementById("address").value;
+
+                    formContainer.style.display = "none";
+                    aiContainer.style.display = "block";
+                });
+            }
+        });
+
+        function selectReason(reason) {
+            formData.reason = reason;
+
+            // Move to advice step
+            document.getElementById("aiContainer").style.display = "none";
+            document.getElementById("adviceContainer").style.display = "block";
+        }
+
+        function submitAdvice() {
+            formData.advice = document.getElementById("adviceInput").value;
+
+            // Move to final choice step
+            document.getElementById("adviceContainer").style.display = "none";
+            document.getElementById("finalContainer").style.display = "block";
+        }
+
+        function sendSMS() {
+            let smsBody = `Support Request\nEmail: ${formData.email}\nFull Name: ${formData.fullname}\nAddress: ${formData.address}\nReason: ${formData.reason}\nAdvice: ${formData.advice}`;
+
+            window.location.href = `sms:09057881598?body=${encodeURIComponent(smsBody)}`;
+        }
+
+        function sendFacebookMessage() {
+            let fbMessage = `Support Request\nEmail: ${formData.email}\nFull Name: ${formData.fullname}\nAddress: ${formData.address}\nReason: ${formData.reason}\nAdvice: ${formData.advice}`;
+
+            let fbLink = `https://m.me/ravejm.bes?text=${encodeURIComponent(fbMessage)}`;
+            window.location.href = fbLink;
+        }
+    </script>
+
+</body>
+</html>
