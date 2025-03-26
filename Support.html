@@ -111,7 +111,7 @@
     <div class="container" id="finalContainer" style="display: none;">
         <h2>Final Step</h2>
         <p>Choose your preferred contact method:</p>
-        <button onclick="sendFacebookMessage()">Facebook Profile</button>
+        <button onclick="goToFacebook()">Facebook Support</button>
         <button onclick="sendSMS()">Send SMS</button>
     </div>
 
@@ -162,7 +162,7 @@
             window.location.href = `sms:09057881598?body=${encodeURIComponent(smsBody)}`;
         }
 
-        function sendFacebookMessage() {
+        function goToFacebook() {
             // Redirect to Facebook profile
             window.location.href = "https://www.facebook.com/raven.john.becaro.mabao";
         }
