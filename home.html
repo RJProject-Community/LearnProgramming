@@ -35,46 +35,38 @@
         <button id="start-game-button">Start Game</button>
         <button id="open-calculator-button">Open Calculator</button>
         <a href="TDLD.html" class="tdld-button">Go to Learn and Program</a> <!-- Fully visible & centered -->
-        <button id="adminBtn" onclick="goToAccount()" style="display: none;">Administrator</button> <!-- Admin Button -->
         <button id="logout-button" onclick="logout()">Logout</button> <!-- Logout button -->
+        <button id="adminBtn" onclick="goToAccount()" style="display: none;">Administrator</button> <!-- Admin Button -->
     </div>
     
     <script>
-        document.getElementById('start-game-button').addEventListener('click', function() {
-            window.location.href = 'Tictactoe.html';
-        });
-        document.getElementById('open-calculator-button').addEventListener('click', function() {
-            window.location.href = 'calculator.html';
-        });
+        document.addEventListener("DOMContentLoaded", function () {
+    const savedUser = JSON.parse(localStorage.getItem("loggedInUser")); // FIXED: Correct key
 
-        // Get logged-in email
-        const savedUser = JSON.parse(localStorage.getItem("user"));
-        if (savedUser) {
-            document.getElementById("userEmail").innerText = "Logged in as: " + savedUser.email;
+    if (savedUser && savedUser.email) {
+        document.getElementById("userEmail").innerText = "Logged in as: " + savedUser.email;
 
-            // Show "Administrator" button only if the user is the admin
-            if (savedUser.email === "ravenjm.nhs@gmail.com") {
-                document.getElementById("adminBtn").style.display = "block";
-            }
-        } else {
-            alert("You are not logged in.");
-            window.location.href = "index.html"; // Redirect if not logged in
+        // FIX: Ensure "Administrator" button shows for the admin user
+        if (savedUser.email.toLowerCase() === "ravenjm.nhs@gmail.com") { 
+            document.getElementById("adminBtn").style.display = "block"; // Show admin button
         }
+    } else {
+        alert("You are not logged in.");
+        window.location.href = "index.html"; // Redirect to login
+    }
 
-        function logout() {
-            localStorage.removeItem("loggedInEmail");
-            localStorage.removeItem("user");
-            window.location.href = "index.html";
-        }
+    // Ensure the admin button redirects correctly
+    document.getElementById("adminBtn").addEventListener("click", function () {
+        window.location.href = "account.html"; // Redirect to account page
+    });
 
-        // Restrict access to account.html (Admin Only)
-        function goToAccount() {
-            if (savedUser.email === "ravenjm.nhs@gmail.com") {
-                window.location.href = "account.html";
-            } else {
-                alert("You are not the administrator.");
-            }
-        }
+    function logout() {
+        localStorage.removeItem("loggedInUser"); // FIXED: Remove correct key
+        window.location.href = "index.html";
+    }
+
+    document.getElementById("logout-button").addEventListener("click", logout);
+});
     </script>
 </body>
 </html>
