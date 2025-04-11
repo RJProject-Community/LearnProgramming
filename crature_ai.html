@@ -1,0 +1,306 @@
+<!DOCTYPE html><html>
+<head>
+  <title>CRATURE AI Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #chat {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      gap: 10px;
+    }
+    .input-bar-top {
+      display: flex;
+      align-items: center;
+      background: #f1f1f1;
+      border-radius: 25px;
+      padding: 10px 12px;
+      margin-top: 20px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+    #input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      outline: none;
+    }
+    .send-btn {
+      background: #000;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+      margin-left: 8px;
+      cursor: pointer;
+    }
+    h2 {
+      text-align: center;
+      font-size: 20px;
+      margin: 12px 0;
+    }
+    .buttons-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .quick-action {
+      background: #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 24px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      gap: 8px;
+      cursor: pointer;
+    }
+    .quick-action img {
+      width: 16px;
+      height: 16px;
+    }
+    #messages {
+      flex-grow: 1;
+      overflow-y: auto;
+      margin-top: 10px;
+      padding-bottom: 10px;
+    }
+    .message {
+      margin: 10px;
+      padding: 10px 14px;
+      border-radius: 18px;
+      max-width: 75%;
+      font-size: 14px;
+      word-wrap: break-word;
+    }
+    .user {
+      background-color: #daf0ff;
+      margin-left: auto;
+    }
+    .ai {
+      background-color: #f0f9e8;
+      margin-right: auto;
+    }
+    .bottom-buttons {
+      display: flex;
+      justify-content: space-around;
+      padding: 8px 0;
+      border-top: 1px solid #eee;
+    }
+    .input-btn {
+      background: #eee;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+    }
+    #conversationList {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #fafafa;
+      border-right: 1px solid #ddd;
+      padding: 10px;
+      overflow-y: auto;
+      display: none;
+    }
+    .conversation-item {
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .conversation-item:hover {
+      background: #eee;
+    }
+    #menuToggle {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 2;
+    }
+    #newConvoBtn {
+      margin-top: 10px;
+      display: block;
+      padding: 6px 10px;
+      background: #000;
+      color: white;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div id="menuToggle">⋮</div>
+<div id="conversationList">
+  <input type="text" placeholder="Search..." style="width: 100%; padding: 6px;">
+  <div id="convoItems"></div>
+  <button id="newConvoBtn">+ New Conversation</button>
+</div><div id="chat">
+  <div class="input-bar-top">
+    <input type="text" id="input" placeholder="Ask anything" />
+    <button class="send-btn" onclick="sendMessage()">⬆</button>
+    <input type="file" id="filePicker" accept="image/*,.pdf,.doc,.docx,.txt" capture="environment" style="display: none;" />
+  </div>
+  <h2>What can I help with?</h2>
+  <div class="buttons-container">
+    <div class="quick-action"><img src="https://img.icons8.com/ios/50/image.png"/>Create image</div>
+    <div class="quick-action"><img src="https://img.icons8.com/ios/50/light-on.png"/>Brainstorm</div>
+    <div class="quick-action"><img src="https://img.icons8.com/ios/50/graduation-cap.png"/>Get advice</div>
+    <div class="quick-action">More</div>
+  </div>
+  <div id="messages"></div>
+  <div class="bottom-buttons">
+    <button class="input-btn" onclick="openFilePicker()">➕</button>
+    <button class="input-btn">🌐 Search</button>
+    <button class="input-btn">💡 Reason</button>
+  </div>
+</div><script>
+let conversationHistory = [];
+let currentConversation = [];
+let currentTitle = "Untitled";
+
+function updateConversationList() {
+  const convoItems = document.getElementById("convoItems");
+  convoItems.innerHTML = "";
+  conversationHistory.forEach((convo, index) => {
+    const div = document.createElement("div");
+    div.className = "conversation-item";
+    div.textContent = convo.title;
+    div.onclick = () => {
+      currentConversation = convo.messages;
+      document.getElementById("messages").innerHTML = convo.messages.map(m => `<div class='message ${m.sender}'><strong>${m.sender === 'user' ? 'You' : 'CRATURE AI'}:</strong><br>${m.text}</div>`).join('');
+    };
+    div.oncontextmenu = (e) => {
+      e.preventDefault();
+      const newTitle = prompt("Rename conversation:", convo.title);
+      if (newTitle) {
+        convo.title = newTitle;
+        updateConversationList();
+      } else if (confirm("Delete conversation?")) {
+        conversationHistory.splice(index, 1);
+        updateConversationList();
+      }
+    };
+    convoItems.appendChild(div);
+  });
+}
+
+document.getElementById("menuToggle").onclick = () => {
+  const list = document.getElementById("conversationList");
+  list.style.display = list.style.display === "none" ? "block" : "none";
+};
+
+document.getElementById("newConvoBtn").onclick = () => {
+  if (currentConversation.length > 0) {
+    conversationHistory.push({ title: currentTitle, messages: [...currentConversation] });
+  }
+  currentConversation = [];
+  currentTitle = "Untitled";
+  document.getElementById("messages").innerHTML = "";
+  updateConversationList();
+};
+</script><script>
+const API_KEY = "AIzaSyCC5jBcLx5ijRvBEYGrc-vtHFsxic_NLG4";
+const URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+
+async function sendMessage(text = null) {
+  const input = document.getElementById("input");
+  const userText = text || input.value.trim();
+  if (!userText) return;
+  addMessage(userText, 'user');
+  input.value = "";
+
+  const response = await fetch(URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ parts: [{ text: userText }] }],
+      safetySettings: [],
+    })
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    const reply = data.candidates[0].content.parts[0].text;
+    addMessage(reply, 'ai');
+  } else {
+    addMessage("Failed to get a response.", 'ai');
+  }
+}
+
+function addMessage(text, sender) {
+  const msgDiv = document.createElement("div");
+  msgDiv.className = `message ${sender}`;
+  msgDiv.innerHTML = `<strong>${sender === 'user' ? 'You' : 'CRATURE AI'}:</strong><br>${text.replace(/\n/g, "<br>")}`;
+  document.getElementById("messages").appendChild(msgDiv);
+  msgDiv.scrollIntoView({ behavior: "smooth" });
+  currentConversation.push({ text, sender });
+  if (currentTitle === "Untitled" && sender === 'user') currentTitle = text.slice(0, 30);
+}
+
+function sendQuickAction(promptText) {
+  sendMessage(promptText);
+}
+
+function triggerSearch() {
+  const query = prompt("Search conversation history:");
+  if (query) {
+    addMessage(`You searched for: "${query}"`, 'user');
+  }
+}
+
+function openFilePicker() {
+  document.getElementById('filePicker').click();
+}
+
+document.getElementById('filePicker').addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  if (file) {
+    alert("File selected: " + file.name);
+  }
+});
+
+window.onload = () => {
+  document.querySelectorAll('.quick-action').forEach(btn => {
+    const text = btn.innerText.toLowerCase();
+    btn.onclick = () => {
+      if (text.includes("create image")) sendQuickAction("Create an image of a beautiful future city.");
+      else if (text.includes("brainstorm")) sendQuickAction("Can you help me brainstorm ideas?");
+      else if (text.includes("get advice")) sendQuickAction("I need advice on managing time better.");
+      else if (text.includes("more")) sendQuickAction("What else can you help me with?");
+    };
+  });
+
+  document.querySelectorAll('.bottom-buttons .input-btn').forEach(btn => {
+    const label = btn.innerText.trim();
+    if (label === "🌐 Search") btn.onclick = triggerSearch;
+    if (label === "💡 Reason") btn.onclick = () => sendQuickAction("Why is this important? 💡");
+  });
+};
+</script></body>
+  </html>
